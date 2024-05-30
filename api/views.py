@@ -154,7 +154,7 @@ from django.contrib.auth import login as auth_login
 from django.http import JsonResponse
 from .models import Employee
 import json
-import requests
+import requests 
 import base64
 
 @csrf_exempt
