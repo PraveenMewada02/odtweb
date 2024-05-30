@@ -4,17 +4,23 @@ import requests
 import schedule
 import time
 from datetime import datetime, timedelta
+import dj_database_url
+import psycopg2
 
 # Replace these variables with your database credentials
-user = 'root'
-password = ''
-host = 'localhost'
-port = '3306'  # Default MySQL port
-database = 'attendapp'
+# user = 'root'
+# password = ''
+# host = 'localhost'
+# port = '3306'  # Default MySQL port
+# database = 'attendapp'
 #'ENGINE': 'django.db.backends.mysql',
  ##       
 import requests
 import base64
+
+##DATABASE
+database_url = "postgres://default:5VsuIBhUnkP1@ep-wild-field-a1xpuji5.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
+engine = create_engine(database_url)
 
 #VARIABLE FOR API
 empcode = "ALL"
@@ -59,7 +65,7 @@ df = pd.DataFrame(punch_data, columns=['Empcode', 'INTime', 'OUTTime', 'WorkTime
 
 
 # Create SQLAlchemy engine
-engine = create_engine(f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}')
+#engine = create_engine(f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}')
 
 # Store DataFrame in MySQL database
 table_name = 'employee1'
@@ -77,3 +83,16 @@ print("Scheduler started. Waiting for the next scheduled task...")
 while True:
     schedule.run_pending()
     time.sleep(1)
+
+
+
+##DATABASE
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+# os.environ['DATABASE_URL'] = "postgres://default:5VsuIBhUnkP1@ep-wild-field-a1xpuji5.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv('DATABASE_URL')
+#     )
+# }
