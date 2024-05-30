@@ -12,12 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-from dotenv import load_dotenv
 import os
 import psycopg2
 import dj_database_url
 
-load_dotenv()
+#load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-nma=xi6x2p-crjg^ifqqkapyu1qjd0l=+wn)-rijk_o%$!k3w_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #os
+DEBUG = os.environ.get('DEBUG','True')=="True"
+ #os
 
 # ALLOWED_HOSTS = [""]
 ALLOWED_HOSTS = ['*']
