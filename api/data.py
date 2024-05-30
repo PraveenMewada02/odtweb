@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 import requests
 import schedule
 import time
+from datetime import datetime, timedelta
 
 # Replace these variables with your database credentials
 user = 'root'
@@ -15,8 +16,14 @@ database = 'attendapp'
 import requests
 import base64
 
-api_url = "https://api.etimeoffice.com/api/DownloadInOutPunchData?Empcode=ALL&&FromDate=01/09/2023&&ToDate=28/05/2024"
+#VARIABLE FOR API
+empcode = "ALL"
+previousdate = (datetime.now() - timedelta(days=1)).strftime('%d-%m-%Y')
+presentdate = datetime.now().strftime('%d-%m-%Y')
+
+api_url = "https://api.etimeoffice.com/api/DownloadInOutPunchData?Empcode={empcode}&&FromDate={previousdate}&&ToDate={presentdatee}"
 api_key = "ORANGEDATATECH:HR@Orange:UY7g2#!gWEA6kB8:true"
+
 
 # Encode the API key in base64
 base64_api_key = base64.b64encode(api_key.encode()).decode()
